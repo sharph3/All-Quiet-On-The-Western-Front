@@ -1,0 +1,70 @@
+﻿effect_starting_tactics = {
+	if = {
+		limit = {
+			has_technology_researched = general_staff
+		}
+		random_scope_state = {
+			limit = {
+				is_capital = yes
+			}
+			create_building={
+				building= building_stuff_headquarters 
+				level=1
+				reserves=1
+				activate_production_methods={ "pm_professional_staff_system" "pm_balanced_war_tactical_order" }
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_technology_researched = general_staff
+		}
+		every_scope_state = {
+			limit = {
+				OR = {
+					any_scope_building = {
+						is_building_type = building_barracks
+						level >= 5
+					}
+					any_scope_building = {
+						is_building_type = building_conscription_center
+						level >= 20
+					}
+				}
+			}
+			create_building={
+				building= building_local_stuff_headquarters 
+				level=1
+				reserves=1
+				activate_production_methods={ "pm_professional_training" }
+			}
+		}
+	}
+	if = {
+		limit = {
+			NOT = { is_country_type = decentralized }
+			has_technology_researched = military_drill
+		}
+		every_scope_state = {
+			limit = {
+				OR = {
+					any_scope_building = {
+						is_building_type = building_urban_center
+						level >= 5
+					}
+					any_scope_building = {
+						is_building_type = building_barracks
+						level >= 15
+					}
+				}
+			}
+			create_building={
+				building= building_fortifications 
+				level=1
+				reserves=1
+			}
+		}
+	}
+}
+
+
